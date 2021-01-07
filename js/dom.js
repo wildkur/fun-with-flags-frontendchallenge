@@ -95,30 +95,42 @@ const Dom = {
     });
   },
 
+  //In this function, we will search the countries that contains the introduced input from the user, and we will print only those that contains it
   searchInputElement(e) {
+    //we create a function variable that takes the target of the input, and puts every letter one next to each other
     let { value } = e.target;
+    //Then we select all the country names created earlier with the class 'country-name"
     let names = document.querySelectorAll(".country-name");
-
+    //And for each country name, we check if the country name contains the introduced value by the user (with method include) and in case that it contains it, we  set the display to block.
     names.forEach((name) => {
       if (name.innerText.toLowerCase().includes(value.toLowerCase())) {
         name.parentElement.parentElement.style.display = "block";
-      } else {
+      }
+      //If it doesn't contain it, we hide it setting the display to none
+      else {
         name.parentElement.parentElement.style.display = "none";
       }
+      //And then we always will check if there is no input value by the user, we will make all of the countries been displaied as block, and this will make that if user typed something and then he deletes it, will make all the countries show again
       if (!value) {
         name.parentElement.parentElement.style.display = "block";
       }
     });
   },
 
+  //In this function we will filter the countries by region
   filterByRegions() {
+    //We make the same as we did with the searchInputElement function, but using the regions. We select all regions with a querySelectorAll, and then for each one of them we check if it includes the selected region of the dropdown. We use include because the field 'country-region' is "Region: Eurpoe", so if we compare it will never be true
     let regions = document.querySelectorAll(".country-region");
     regions.forEach((region) => {
+      //Same as before, we check if it includes it and if it's true we display block the country
       if (region.innerText.includes(this.innerText)) {
         region.parentElement.parentElement.style.display = "block";
-      } else {
+      }
+      //If not we just hide it with display none
+      else {
         region.parentElement.parentElement.style.display = "none";
       }
+      //and if the user press the All regions, we just show all of them wiht a display block
       if (this.innerText === "All") {
         region.parentElement.parentElement.style.display = "block";
       }
@@ -126,13 +138,13 @@ const Dom = {
   },
 
   //Small function to toggle the class dark so it will make the body change to a dark mode and go back to light mode
-  toggleDarMode() {
+  toggleDarKMode() {
     let body = document.querySelector("body");
     body.classList.toggle("dark");
   },
 };
 
-//Drop down shows
+//Event listener to make the dropdown shown toggleing the class open
 let dropBtn = document.querySelector("#filter");
 dropBtn.addEventListener("click", function () {
   dropBtn.classList.toggle("open");

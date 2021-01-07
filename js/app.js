@@ -27,4 +27,4 @@ function processFlags(result) {
 
 //Dark Mode toggler
 let nightMode = document.querySelector("#toggle");
-nightMode.addEventListener("click", Dom.toggleDarMode);
+nightMode.addEventListener("click", Dom.toggleDarKMode);
