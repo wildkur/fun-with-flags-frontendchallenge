@@ -1,42 +1,30 @@
-loadFlags()
+loadFlags();
 
-function loadFlags(){
-    Requests.getCountriesFromJSON(processFlags)
+function loadFlags() {
+  Requests.getCountriesFromJSON(processFlags);
 }
 
-function processFlags(result){
-    let countries = document.querySelector('#countries')
-    let countryArray = result
-    countries.innerHTML = ''
-    let inputBox = document.querySelector('#search')
-    
-    //For each country of the array, we create a div with their respective information
-    countryArray.forEach(country => {
-        Dom.addCountry(country)
-    })
+function processFlags(result) {
+  let countries = document.querySelector("#countries");
+  let countryArray = result;
+  countries.innerHTML = "";
+  let inputBox = document.querySelector("#search");
+  let list = document.querySelectorAll("li");
 
-    inputBox.addEventListener('input', function(e){
-        let {value} = e.target
-        let names = document.querySelectorAll('.country-name')
+  //For each country of the array, we create a div with their respective information
+  countryArray.forEach((country) => {
+    Dom.addCountry(country);
+  });
 
-        names.forEach(name => {
-            if(name.innerText.toLowerCase().includes(value)){
-                name.parentElement.parentElement.style.display='block'
-            } else {
-                name.parentElement.parentElement.style.display='none'
-            }
-            if(!value){
-                name.parentElement.parentElement.style.display='block'
-            }
-        })
-    })
+  //This listener activates the function in the dom, of showing the countries that contains the inputted letter
+  inputBox.addEventListener("input", Dom.searchInputElement);
+
+  //This listener shows the countries of the specific region we clicked
+  list.forEach((item) => {
+    item.addEventListener("click", Dom.filterByRegions);
+  });
 }
 
 //Dark Mode toggler
-let nightMode = document.querySelector('#toggle')
-let body = document.querySelector('body')
-
-nightMode.addEventListener('click', function(){
-    body.classList.toggle('dark')
-})
-
+let nightMode = document.querySelector("#toggle");
+nightMode.addEventListener("click", Dom.toggleDarMode);
