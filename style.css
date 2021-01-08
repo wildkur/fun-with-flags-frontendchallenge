@@ -158,6 +158,10 @@ body.dark .btn-toggle .far {
   margin: auto;
 }
 
+.country-border {
+  cursor: pointer;
+}
+
 /* Modal Stylyng */
 
 .modal {
